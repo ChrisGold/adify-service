@@ -1,4 +1,4 @@
-name: Deploy
+name: Staging
 
 on:
   push:
@@ -17,9 +17,3 @@ jobs:
           git checkout ${GITHUB_REF#refs/heads/}
           git branch release
           git push origin master:release
-
-      - uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "sac-adify" #Must be unique in Heroku
-          heroku_email: "ChGol20@student.sdu.dk"
