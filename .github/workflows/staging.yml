@@ -15,7 +15,9 @@ jobs:
 
       - name: Test
         run: mvn test -DskipTests=false -Dgroups=slow
-      - uses: ad-m/github-push-action@master
-        with:
-          branch: release
-          github_token: ${{ secrets.PAT}}
+      - name: Push to Release
+        run: |
+          git checkout master
+          git rebase origin/release
+          git branch release
+          git push origin release:release

@@ -22,6 +22,9 @@ jobs:
         run: mvn install
 
       - name: Push to Master
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{secrets.PAT}}
+        run: |
+          git checkout ${GITHUB_REF#refs/heads/}
+          git rebase origin/master
+          git branch master
+          git push origin master:master
+          git push origin :${GITHUB_REF#refs/heads/}
