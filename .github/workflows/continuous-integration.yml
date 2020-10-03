@@ -27,5 +27,4 @@ jobs:
           git branch master
           git push origin master:master
           git push origin :${GITHUB_REF#refs/heads/}
-          git push origin [BRANCH]:ready/[BRANCH]
 
