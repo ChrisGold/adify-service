@@ -1,10 +1,6 @@
 name: Staging
 
 on:
-  workflow_run:
-    workflows: [ "Continuous Integration" ]
-    types:
-      - completed
   push:
     branches:
       - master
@@ -14,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.PAT }}
 
       - name: Test
         run: mvn test -DskipTests=false -Dgroups=slow

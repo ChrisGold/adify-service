@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          github_token: ${{ secrets.PAT}}
+          token: ${{ secrets.PAT }}
 
       - name: Test
         run: mvn test -DskipTests=false -Dgroups=fast

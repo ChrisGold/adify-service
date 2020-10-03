@@ -1,10 +1,6 @@
 name: Release
 
 on:
-  workflow_run:
-    workflows: [ "Staging" ]
-    types:
-      - completed
   push:
     branches:
       - release
@@ -17,6 +13,6 @@ jobs:
 
       - uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: "sac-adify" #Must be unique in Heroku
           heroku_email: "ChGol20@student.sdu.dk"
