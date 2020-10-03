@@ -1,6 +1,10 @@
 name: Release
 
 on:
+  workflow_run:
+    workflows: [ "Staging" ]
+    types:
+      - completed
   push:
     branches:
       - release
@@ -10,8 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          github_token: ${{secrets.PAT}}
 
       - uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
         with:
