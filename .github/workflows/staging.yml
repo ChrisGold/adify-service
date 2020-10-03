@@ -16,4 +16,4 @@ jobs:
         run: |
           git checkout ${GITHUB_REF#refs/heads/}
           git branch release
-          git push origin master:release
+          git push -f origin master:release
