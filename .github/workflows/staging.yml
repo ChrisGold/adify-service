@@ -18,7 +18,4 @@ jobs:
       - name: Push to Release
         run: |
           git checkout master
-          git rebase origin/release
-          git branch release
-          git push origin release:release
-          git push origin :${GITHUB_REF#refs/heads/}
+          git push -f origin master:release
