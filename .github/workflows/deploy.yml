@@ -10,6 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Test
+        run: mvn test -DskipTests=false -Dgroups=slow
+      - name: Push to Release
+        run: |
+          git checkout ${GITHUB_REF#refs/heads/}
+          git rebase origin/release
+          git branch release
+          git push origin master:release
+
       - uses: akhileshns/heroku-deploy@v3.5.7 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
