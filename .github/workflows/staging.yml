@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          github_token: ${{ secrets.PAT}}
+
       - name: Test
         run: mvn test -DskipTests=false -Dgroups=slow
       - name: Push to Release
